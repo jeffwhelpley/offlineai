@@ -225,8 +225,24 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title }}</h1>
+      <h1>Hello, offlineai</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <div *ngIf="areAiModelsReady()">
+        <h2>Input Text Here</h2>
+        <textarea
+            style="width: 100%; height: 100px;"
+            [(ngModel)]="inputText"
+            placeholder="Type something here..."></textarea>
+        <div><button (click)="prompt()">Prompt</button></div>
+        <div><button (click)="summarize()">Summarize</button></div>
+         <div><button (click)="write()">Write</button></div> 
+         <div><button (click)="rewrite()">Rewrite</button></div>          
+         <div><button (click)="detectLanguage()">Detect Language</button></div>          
+      </div>
+      <div *ngIf="outputText()">
+        <h2>Output:</h2>
+        <p>{{ outputText() }}</p>
+      </div>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
